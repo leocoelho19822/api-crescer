@@ -12,7 +12,7 @@ const app = express();
 app.use(cookieParser());  
 
 const corsOptions = {
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "https://crescer.vercel.app"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,  
 };
@@ -26,5 +26,5 @@ sequelize.sync({ force: false })
   .then(() => console.log("Banco de dados sincronizado"))
   .catch((error) => console.error("Erro ao sincronizar o banco de dados:", error));
 
-const PORT = process.env.PORT || 5005;
+const PORT = process.env.PORT || 5008;
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
