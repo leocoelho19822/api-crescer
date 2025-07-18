@@ -54,12 +54,13 @@ exports.login = async (req, res) => {
 
         // Define o cookie HTTPOnly
         res.cookie("token", token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
-            maxAge: 30 * 24 * 60 * 60 * 1000, // 30 dias
-        });
-        res.setHeader("Access-Control-Allow-Credentials", "true"); // Permite o envio de cookies no frontend
+  httpOnly: true,
+  secure: true,            // funciona com HTTPS
+  sameSite: "None",        // permite uso entre domínios diferentes
+  maxAge: 30 * 24 * 60 * 60 * 1000 // 30 dias
+});
+
+//        res.setHeader("Access-Control-Allow-Credentials", "true"); // Permite o envio de cookies no frontend
         
 
         res.json({ message: "Login bem-sucedido", user: { id: user.id, name: user.name, email: user.email } });
