@@ -21,7 +21,7 @@ const transporter = nodemailer.createTransport({
 });
 
 async function sendResetPasswordEmail(email, token) {
-  const resetLink = `http://localhost:5173/reset-password/${token}`;
+  const resetLink = `https://crescer.vercel.app/reset-password/${token}`;
 
   const mailOptions = {
     from: "suporte.craveirocoelho@gmail.com",
@@ -37,7 +37,7 @@ async function sendResetPasswordEmail(email, token) {
 }
 
 async function sendVerificationEmail(email, token) {
-    const verificationLink = `http://localhost:5173/verify-email/${token}`;
+    const verificationLink = `https://crescer.vercel.app/verify-email/${token}`;
 
     const mailOptions = {
         from: "suporte.craveirocoelho@gmail.com",
