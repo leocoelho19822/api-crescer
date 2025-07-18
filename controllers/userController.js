@@ -6,7 +6,7 @@ const { sendResetPasswordEmail, sendVerificationEmail } = require("../services/e
 // Função para registrar um novo usuário
 exports.register = async (req, res) => {
     try {
-        const { name, email, password, phone } = req.body;
+        const { name, email, password } = req.body;
 
         const userExists = await User.findOne({ where: { email } });
         if (userExists) {
@@ -14,7 +14,7 @@ exports.register = async (req, res) => {
         }
 
         //const hashedPassword = await bcrypt.hash(password, 10); // Criptografa a senha
-        const user = await User.create({ name, email, password, phone, isVerified: false });
+        const user = await User.create({ name, email, password, isVerified: false });
 
         // Gera token de verificação
         const verificationToken = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: "1d" });

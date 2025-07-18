@@ -42,6 +42,29 @@ exports.getAllArticles = async (req, res) => {
   }
 };
 
+// Buscar artigo por ID
+exports.getArticleById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const article = await Article.findByPk(id, {
+      include: [
+        { model: User, as: 'author', attributes: ['id', 'name', 'email'] },
+        { model: User, as: 'reviewer', attributes: ['id', 'name', 'email'] },
+      ],
+    });
+
+    if (!article) {
+      return res.status(404).json({ message: "Artigo não encontrado." });
+    }
+
+    res.status(200).json(article);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Erro ao buscar artigo.", error: error.message });
+  }
+};
+
 // Aprovar artigo (revisor)
 exports.approveArticle = async (req, res) => {
   try {

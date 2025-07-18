@@ -22,7 +22,7 @@ app.use(express.json());
 app.use("/api/users", userRoutes);
 app.use("/api/articles", articleRoutes); 
 
-sequelize.sync({ force: true }) 
+sequelize.sync({ force: false }) 
   .then(() => console.log("Banco de dados sincronizado"))
   .catch((error) => console.error("Erro ao sincronizar o banco de dados:", error));
 

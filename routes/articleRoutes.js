@@ -8,7 +8,10 @@ const { isEditor, isReviewer } = require("../middleware/roleMiddleware");
 router.post("/", authMiddleware, isEditor, articleController.createArticle);
 
 // Listar artigos (qualquer utilizador autenticado)
-router.get("/", authMiddleware, articleController.getAllArticles);
+router.get("/", articleController.getAllArticles);
+
+// Buscar artigo por ID
+router.get("/:id", articleController.getArticleById);
 
 // Aprovar artigo (revisor)
 router.put("/:id/approve", authMiddleware, isReviewer, articleController.approveArticle);
