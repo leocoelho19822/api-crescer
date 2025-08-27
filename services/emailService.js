@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 
-
+/*
 const transporter = nodemailer.createTransport({
     host: "smtpi.uni5.net",
     port: 587,
@@ -10,9 +10,9 @@ const transporter = nodemailer.createTransport({
         pass: process.env.PASS_NODEMAILER ,
     },
 });
+*/
 
 
-/*
 const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -20,7 +20,6 @@ const transporter = nodemailer.createTransport({
         pass: process.env.PASS_GMAIL,
     },
 });
-*/
 
 async function sendResetPasswordEmail(email, token) {
   const resetLink = `https://crescer.vercel.app/reset-password/${token}`;
